@@ -7,17 +7,6 @@ pipeline {
             }
         }
         
-        stage('SonarQube analysis') {
-            steps {
-                // Exécuter l'analyse SonarQube
-                script {
-                    def scannerHome = tool 'SonarQubeScanner';
-                    withSonarQubeEnv('SonarQube') {
-                        sh "${scannerHome}/bin/sonar-scanner"
-                    }
-                }
-            }
-      }
               
         stage('Test') {
             steps {
