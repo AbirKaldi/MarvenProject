@@ -11,6 +11,14 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
+        
+        stage('Checkstyle') {
+                    steps {
+                        sh "mvn checkstyle:check"
+                        recordIssues(tools: [checkStyle(reportEncoding: 'UTF-8')])
+                    }
+                }
+                
         stage('Test') {
             steps {
                 sh 'mvn test'
